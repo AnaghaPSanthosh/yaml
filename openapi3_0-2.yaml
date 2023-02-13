@@ -1,0 +1,732 @@
+openapi: 3.0.3
+info:
+  title: BOOKSTORE
+  description: >-
+    This is a BOOKSTORE
+
+
+    Some useful links:
+
+    - [The Book Store
+    repository](https://github.com/swagger-api/swagger-bookstore)
+
+    - [The source API definition for the Book
+    Store](https://github.com/swagger-api/swagger-bookstore/blob/master/src/main/resources/openapi.yaml)
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: https://bookstore.swagger.io/api/v3
+tags:
+  - name: book
+    description: Everything about your Books
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+  - name: store
+    description: Access to Books from library
+    externalDocs:
+      description: Find out more about books
+      url: http://swagger.io
+  - name: user
+    description: Operations about user
+paths:
+  /book:
+    put:
+      tags:
+        - book
+      summary: Update an existing book in library
+      description: Update an existing book by Id
+      operationId: updateBook
+      requestBody:
+        description: Update an existent book in the library
+        content:
+          application/json:
+            schema:
+              required:
+                - name
+                - photoUrls
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 10
+                title:
+                  type: string
+                  example: FIVE FEET APART
+                photoUrls:
+                  type: array
+                  xml:
+                    wrapped: true
+                Author:
+                  type: string
+                status:
+                  type: string
+                  description: book status in the store
+                  enum:
+                    - available
+                    - sold
+              xml:
+                name: book
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - name
+                - photoUrls
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 10
+                title:
+                  type: string
+                  example: FIVE FEET APART
+                photoUrls:
+                  type: array
+                  xml:
+                    wrapped: true
+                Author:
+                  type: string
+                status:
+                  type: string
+                  description: book status in the store
+                  enum:
+                    - available
+                    - sold
+              xml:
+                name: book
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                required:
+                  - name
+                  - photoUrls
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 10
+                  title:
+                    type: string
+                    example: FIVE FEET APART
+                  photoUrls:
+                    type: array
+                    xml:
+                      wrapped: true
+                  Author:
+                    type: string
+                  status:
+                    type: string
+                    description: book status in the store
+                    enum:
+                      - available
+                      - sold
+                xml:
+                  name: book
+            application/xml:
+              schema:
+                required:
+                  - name
+                  - photoUrls
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 10
+                  title:
+                    type: string
+                    example: FIVE FEET APART
+                  photoUrls:
+                    type: array
+                    xml:
+                      wrapped: true
+                  Author:
+                    type: string
+                  status:
+                    type: string
+                    description: book status in the store
+                    enum:
+                      - available
+                      - sold
+                xml:
+                  name: book
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: book not found
+        '405':
+          description: Validation exception
+      security:
+        - petstore_auth:
+            - write:books
+            - read:books
+    post:
+      tags:
+        - book
+      summary: Add a new book to the library
+      description: Add a new book to the library
+      operationId: addBook
+      requestBody:
+        description: Create a new book in the library
+        content:
+          application/json:
+            schema:
+              required:
+                - name
+                - photoUrls
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 10
+                title:
+                  type: string
+                  example: FIVE FEET APART
+                photoUrls:
+                  type: array
+                  xml:
+                    wrapped: true
+                Author:
+                  type: string
+                status:
+                  type: string
+                  description: book status in the store
+                  enum:
+                    - available
+                    - sold
+              xml:
+                name: book
+          application/xml:
+            schema:
+              required:
+                - name
+                - photoUrls
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 10
+                title:
+                  type: string
+                  example: FIVE FEET APART
+                photoUrls:
+                  type: array
+                  xml:
+                    wrapped: true
+                Author:
+                  type: string
+                status:
+                  type: string
+                  description: book status in the store
+                  enum:
+                    - available
+                    - sold
+              xml:
+                name: book
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - name
+                - photoUrls
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 10
+                title:
+                  type: string
+                  example: FIVE FEET APART
+                photoUrls:
+                  type: array
+                  xml:
+                    wrapped: true
+                Author:
+                  type: string
+                status:
+                  type: string
+                  description: book status in the store
+                  enum:
+                    - available
+                    - sold
+              xml:
+                name: book
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                required:
+                  - name
+                  - photoUrls
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 10
+                  title:
+                    type: string
+                    example: FIVE FEET APART
+                  photoUrls:
+                    type: array
+                    xml:
+                      wrapped: true
+                  Author:
+                    type: string
+                  status:
+                    type: string
+                    description: book status in the store
+                    enum:
+                      - available
+                      - sold
+                xml:
+                  name: book
+            application/xml:
+              schema:
+                required:
+                  - name
+                  - photoUrls
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 10
+                  title:
+                    type: string
+                    example: FIVE FEET APART
+                  photoUrls:
+                    type: array
+                    xml:
+                      wrapped: true
+                  Author:
+                    type: string
+                  status:
+                    type: string
+                    description: book status in the store
+                    enum:
+                      - available
+                      - sold
+                xml:
+                  name: book
+        '405':
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - write:books
+            - read:books
+  /book/findByid:
+    get:
+      tags:
+        - book
+      summary: retrieve list of books by id
+      description: Multiple id values can be provided with comma separated strings
+      operationId: findBooksByid
+      parameters:
+        - name: status
+          in: query
+          description: Status values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: available
+            enum:
+              - available
+              - pending
+              - sold
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  required:
+                    - name
+                    - photoUrls
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                      example: 10
+                    title:
+                      type: string
+                      example: FIVE FEET APART
+                    photoUrls:
+                      type: array
+                      xml:
+                        wrapped: true
+                    Author:
+                      type: string
+                    status:
+                      type: string
+                      description: book status in the store
+                      enum:
+                        - available
+                        - sold
+                  xml:
+                    name: book
+            application/xml:
+              schema:
+                type: array
+                items:
+                  required:
+                    - name
+                    - photoUrls
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                      example: 10
+                    title:
+                      type: string
+                      example: FIVE FEET APART
+                    photoUrls:
+                      type: array
+                      xml:
+                        wrapped: true
+                    Author:
+                      type: string
+                    status:
+                      type: string
+                      description: book status in the store
+                      enum:
+                        - available
+                        - sold
+                  xml:
+                    name: book
+        '400':
+          description: Invalid status value
+      security:
+        - petstore_auth:
+            - write:books
+            - read:books
+  /book/findByTags: ''
+  /book/{bookId}:
+    get:
+      tags:
+        - book
+      summary: Find book by ID
+      description: Retrieves a book
+      operationId: getBookById
+      parameters:
+        - name: bookId
+          in: path
+          description: ID of book to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                required:
+                  - name
+                  - photoUrls
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 10
+                  title:
+                    type: string
+                    example: FIVE FEET APART
+                  photoUrls:
+                    type: array
+                    xml:
+                      wrapped: true
+                  Author:
+                    type: string
+                  status:
+                    type: string
+                    description: book status in the store
+                    enum:
+                      - available
+                      - sold
+                xml:
+                  name: book
+            application/xml:
+              schema:
+                required:
+                  - name
+                  - photoUrls
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 10
+                  title:
+                    type: string
+                    example: FIVE FEET APART
+                  photoUrls:
+                    type: array
+                    xml:
+                      wrapped: true
+                  Author:
+                    type: string
+                  status:
+                    type: string
+                    description: book status in the store
+                    enum:
+                      - available
+                      - sold
+                xml:
+                  name: book
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Book not found
+      security:
+        - api_key: []
+        - petstore_auth:
+            - write:books
+            - read:books
+    post:
+      tags:
+        - book
+      summary: Updates a book in the library with form data
+      description: ''
+      operationId: updateBookWithForm
+      parameters:
+        - name: bookId
+          in: path
+          description: ID of book that needs to be updated
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: name
+          in: query
+          description: Name of pet that needs to be updated
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Status of pet that needs to be updated
+          schema:
+            type: string
+      responses:
+        '405':
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - write:books
+            - read:books
+    delete:
+      tags:
+        - book
+      summary: Deletes a book
+      description: delete a book
+      operationId: deleteBook
+      parameters:
+        - name: api_key
+          in: header
+          description: ''
+          required: false
+          schema:
+            type: string
+        - name: bookId
+          in: path
+          description: Book id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: Invalid book value
+      security:
+        - petstore_auth:
+            - write:books
+            - read:books
+  /book/{bookId}/uploadImage:
+    post:
+      tags:
+        - book
+      summary: uploads an image
+      description: ''
+      operationId: uploadFile
+      parameters:
+        - name: bookId
+          in: path
+          description: ID of book to update
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: additionalMetadata
+          in: query
+          description: Additional Metadata
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                  type:
+                    type: string
+                  message:
+                    type: string
+                xml:
+                  name: '##default'
+      security:
+        - petstore_auth:
+            - write:books
+            - read:books
+components:
+  schemas:
+    Book:
+      required:
+        - name
+        - photoUrls
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        title:
+          type: string
+          example: FIVE FEET APART
+        photoUrls:
+          type: array
+          xml:
+            wrapped: true
+        Author:
+          type: string
+        status:
+          type: string
+          description: book status in the store
+          enum:
+            - available
+            - sold
+      xml:
+        name: book
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+      xml:
+        name: '##default'
+  requestBodies:
+    Book:
+      description: book object that needs to be added to the store
+      content:
+        application/json:
+          schema:
+            required:
+              - name
+              - photoUrls
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+                example: 10
+              title:
+                type: string
+                example: FIVE FEET APART
+              photoUrls:
+                type: array
+                xml:
+                  wrapped: true
+              Author:
+                type: string
+              status:
+                type: string
+                description: book status in the store
+                enum:
+                  - available
+                  - sold
+            xml:
+              name: book
+        application/xml:
+          schema:
+            required:
+              - name
+              - photoUrls
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+                example: 10
+              title:
+                type: string
+                example: FIVE FEET APART
+              photoUrls:
+                type: array
+                xml:
+                  wrapped: true
+              Author:
+                type: string
+              status:
+                type: string
+                description: book status in the store
+                enum:
+                  - available
+                  - sold
+            xml:
+              name: book
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://petstore3.swagger.io/oauth/authorize
+          scopes:
+            write:pets: modify book in your account
+            read:pets: read your books
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header

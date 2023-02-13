@@ -1,0 +1,20 @@
+{
+  "name": "bookstore",
+  "version": "1.0.11",
+  "description": "This is a BOOKSTORE  Some useful links: - [The Book Store repository](https://github.com/swagger-api/swagger-bookstore) - [The source API definition for the Book Store](https://github.com/swagger-api/swagger-bookstore/blob/master/src/main/resources/openapi.yaml)",
+  "main": "index.js",
+  "scripts": {
+	"prestart": "npm install",
+	"start": "node index.js"
+  },
+  "keywords": [
+    "swagger"
+  ],
+  "license": "Unlicense",
+  "private": true,
+  "dependencies": {
+    "connect": "^3.2.0",
+    "js-yaml": "^3.3.0",
+    "oas3-tools": "^2.2.3"
+  }
+}
